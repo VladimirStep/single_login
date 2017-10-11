@@ -4,9 +4,11 @@ class SessionsController < ApplicationController
 
   def create
     authenticate!(:by_password)
+    redirect_to root_path
   end
 
   def destroy
-    loguot
+    logout
+    redirect_to root_path
   end
 end

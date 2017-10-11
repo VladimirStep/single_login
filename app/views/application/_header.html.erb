@@ -3,5 +3,16 @@
     <div class="navbar-header">
       <%= link_to 'Single login', '#', class: 'navbar-brand' %>
     </div>
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user %>
+        <li>
+          <div class="user-header-icon" style="background-image: url(<%#= current_user.avatar_url %>)"></div>
+        </li>
+        <li><p class="navbar-text"><%= current_user.email %></p></li>
+        <li><%= link_to 'Logout', logout_path %></li>
+      <% else %>
+        <li><%= link_to 'Login', login_path %></li>
+      <% end %>
+    </ul>
   </div>
 </nav>

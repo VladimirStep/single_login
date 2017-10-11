@@ -12,6 +12,6 @@ Warden::Strategies.add(:by_password) do
   def authenticate!
     user = User.try_authenticate(params[:user][:email], params[:user][:password])
     puts user.inspect
-    user ? fail!("Could not log in") : success!(user)
+    user.nil? ? fail!("Could not log in") : success!(user)
   end
 end
