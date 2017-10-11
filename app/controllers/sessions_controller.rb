@@ -3,8 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
+    authenticate!(:by_password)
   end
 
   def destroy
+    loguot
   end
 end
