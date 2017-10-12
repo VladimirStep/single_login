@@ -31,3 +31,4 @@ doc/
 .idea
 .secret
 .env
+/public/uploads/*

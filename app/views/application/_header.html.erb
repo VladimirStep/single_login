@@ -6,7 +6,7 @@
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
         <li>
-          <div class="user-header-icon" style="background-image: url(<%#= current_user.avatar_url %>)"></div>
+          <div class="user-header-icon" style="background-image: url(<%#= current_user.profile.avatar.thumb.url %>)"></div>
         </li>
         <li><p class="navbar-text"><%= current_user.email %></p></li>
         <li><%= link_to 'Logout', logout_path %></li>
