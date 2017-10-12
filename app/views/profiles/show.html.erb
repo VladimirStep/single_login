@@ -23,6 +23,14 @@
                 <td><%= @profile.birth_date %></td>
               </tr>
               <tr>
+                <td>Avatar</td>
+                <td>
+                  <% if @profile.avatar? %>
+                    <%= image_tag @profile.avatar.thumb.url %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
                 <td>Street</td>
                 <td><%= @profile.street %></td>
               </tr>

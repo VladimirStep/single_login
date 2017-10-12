@@ -36,6 +36,7 @@ gem 'bcrypt', '~> 3.1.7' # Use Capistrano for deployment
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'rails_warden'
+gem 'rmagick'
 gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
