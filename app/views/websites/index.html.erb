@@ -3,7 +3,12 @@
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2">
         <h1 class="text-center">User websites</h1>
+        <% if @websites.any? %>
 
+        <% end %>
+        <div class="text-center">
+          <%= link_to 'Add new website', new_website_path, class: 'btn btn-lg btn-primary' %>
+        </div>
       </div>
     </div>
   </div>

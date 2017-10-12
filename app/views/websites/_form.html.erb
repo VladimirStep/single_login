@@ -1,0 +1,21 @@
+<% if @website.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p>Errors creating user:</p>
+    <ul>
+      <% @website.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for @website do |form| %>
+  <div class="form-group">
+    <%= form.label :name, 'Site name' %>
+    <%= form.text_field :name, class: 'form-control', placeholder: 'My awesome web application', required: true %>
+  </div>
+  <div class="form-group">
+    <%= form.label :domain_name, 'Domain name' %>
+    <%= form.text_field :domain_name, class: 'form-control', placeholder: 'example.com', required: true %>
+  </div>
+  <%= form.submit class: 'btn btn-primary' %>
+<% end %>
