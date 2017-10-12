@@ -4,8 +4,22 @@
       <div class="col-xs-12 col-md-8 col-md-offset-2">
         <h1 class="text-center">User websites</h1>
         <% if @websites.any? %>
-
+        <table class="table table-responsive">
+          <th>Site name</th>
+          <th>Domain name</th>
+          <th>Action</th>
+          <tbody>
+          <% @websites.each do |site| %>
+            <tr>
+              <td><%= site.name %></td>
+              <td><%= site.domain_name %></td>
+              <td><%= link_to 'Show', website_path(site), class: 'btn btn-primary btn-xs' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
         <% end %>
+        <br>
         <div class="text-center">
           <%= link_to 'Add new website', new_website_path, class: 'btn btn-lg btn-primary' %>
         </div>

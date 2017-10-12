@@ -25,9 +25,16 @@ class WebsitesController < ApplicationController
   end
 
   def update
+    if @website.update_attributes(website_params)
+      redirect_to website_path(@website)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @website.destroy
+    redirect_to websites_path
   end
 
   private

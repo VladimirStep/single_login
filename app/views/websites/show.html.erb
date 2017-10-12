@@ -3,7 +3,30 @@
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2">
         <h1 class="text-center">Show Website data</h1>
-
+        <% if @website %>
+          <table class="table table-responsive">
+            <tbody>
+              <tr>
+                <td>Site name</td>
+                <td><%= @website.name %></td>
+              </tr>
+              <tr>
+                <td>Domain name</td>
+                <td><%= @website.domain_name %></td>
+              </tr>
+              <tr>
+                <td>Secrete ID</td>
+                <td><%= @website.secrete_id %></td>
+              </tr>
+              <tr>
+                <td>Secrete Token</td>
+                <td><%= @website.secrete_token %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to 'Edit', edit_website_path(@website), class: 'btn btn-primary pull-left' %>
+          <%= link_to 'Delete', website_path(@website), method: :delete, class: 'btn btn-danger pull-right' %>
+        <% end %>
       </div>
     </div>
   </div>
