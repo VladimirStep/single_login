@@ -1,6 +1,6 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   manager.default_strategies :by_password
-  manager.failure_app = Proc.new { |env| SessionsController.action(:new).call(env) }
+  manager.failure_app = SessionsController.action(:new) # FIXME: Fails with authenticity_token token error
 end
 
 # Declare your strategies here, or require a file that defines one.
@@ -11,9 +11,6 @@ Warden::Strategies.add(:by_password) do
 
   def authenticate!
     user = User.try_authenticate(params[:user][:email], params[:user][:password])
-    puts request.env['action_dispatch.request.parameters']
-    request.env.delete('action_dispatch.request.parameters')
-    puts request.env['action_dispatch.request.parameters']
-    user.nil? ? fail!("Could not log in") : success!(user)
+    user.nil? ? redirect!(Rails.application.routes.url_helpers.login_path) : success!(user)
   end
 end
