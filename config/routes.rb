@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :main, only: [:index]
+  resource :profile
 
   controller :sessions do
     get 'login', to: 'sessions#new'
