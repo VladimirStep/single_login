@@ -3,6 +3,48 @@
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2">
         <h1 class="text-center">User profile</h1>
+        <% if @profile %>
+          <table class="table table-responsive">
+            <tbody>
+              <tr>
+                <td>First name</td>
+                <td><%= @profile.first_name %></td>
+              </tr>
+              <tr>
+                <td>Last name</td>
+                <td><%= @profile.last_name %></td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td><%= @profile.gender %></td>
+              </tr>
+              <tr>
+                <td>Date of birth</td>
+                <td><%= @profile.birth_date %></td>
+              </tr>
+              <tr>
+                <td>Street</td>
+                <td><%= @profile.street %></td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td><%= @profile.city %></td>
+              </tr>
+              <tr>
+                <td>Country</td>
+                <td><%= @profile.country %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center">
+            <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-primary pull-left' %>
+            <%= link_to 'Delete Profile', profile_path, method: :delete, class: 'btn btn-danger pull-right', confirm: 'Are you sure?' %>
+          </div>
+        <% else %>
+          <div class="text-center">
+            <%= link_to 'Create Profile', new_profile_path, class: 'btn btn-lg btn-primary' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
