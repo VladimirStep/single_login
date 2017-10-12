@@ -1,14 +1,15 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <%= link_to 'Single login', '#', class: 'navbar-brand' %>
+      <%= link_to 'Single login', root_path, class: 'navbar-brand' %>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
+        <li><%= link_to 'Profile', profile_path %></li>
+        <li><p class="navbar-text"><%= current_user.email %></p></li>
         <li>
           <div class="user-header-icon" style="background-image: url(<%= current_user.profile.avatar.thumb.url %>)"></div>
         </li>
-        <li><p class="navbar-text"><%= current_user.email %></p></li>
         <li><%= link_to 'Logout', logout_path %></li>
       <% else %>
         <li><%= link_to 'Login', login_path %></li>
