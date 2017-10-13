@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :websites, dependent: :destroy
+  has_many :granted_accesses, dependent: :destroy
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
