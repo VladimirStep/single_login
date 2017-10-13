@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resource :profile
   resources :websites
 
+  get 'regenerate_secrets/:id', to: 'websites#regenerate_secrets', as: 'secrets'
+
   controller :sessions do
     get 'login', to: 'sessions#new'
     post 'sessions', to: 'sessions#create'

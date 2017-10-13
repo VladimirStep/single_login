@@ -8,19 +8,20 @@
             <tbody>
               <tr>
                 <td>Site name</td>
-                <td><%= @website.name %></td>
+                <td colspan="2"><%= @website.name %></td>
               </tr>
               <tr>
                 <td>Domain name</td>
-                <td><%= @website.domain_name %></td>
+                <td colspan="2"><%= @website.domain_name %></td>
               </tr>
               <tr>
                 <td>Secrete ID</td>
-                <td><%= @website.secrete_id %></td>
+                <td colspan="2"><%= @website.secrete_id %></td>
               </tr>
               <tr>
                 <td>Secrete Token</td>
                 <td><%= @website.secrete_token %></td>
+                <td><%= link_to 'Regenerate', secrets_path, class: 'btn btn-default btn-xs' %></td>
               </tr>
             </tbody>
           </table>

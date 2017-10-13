@@ -1,5 +1,5 @@
 class WebsitesController < ApplicationController
-  before_action :set_website, only: [:show, :edit, :update, :destroy]
+  before_action :set_website, only: [:show, :edit, :update, :destroy, :regenerate_secrets]
 
   def index
     @websites = current_user.websites
@@ -35,6 +35,11 @@ class WebsitesController < ApplicationController
   def destroy
     @website.destroy
     redirect_to websites_path
+  end
+
+  def regenerate_secrets
+    @website.regenerate_secrete_token
+    redirect_to website_path(@website)
   end
 
   private
