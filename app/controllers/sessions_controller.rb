@@ -6,7 +6,9 @@ class SessionsController < ApplicationController
 
   def create
     authenticate!(:by_password)
-    redirect_to root_path
+    original_request = session[:original_request]
+    session.delete(:original_request)
+    redirect_to original_request || root_path
   end
 
   def destroy
