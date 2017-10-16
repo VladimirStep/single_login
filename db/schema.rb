@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013090133) do
+ActiveRecord::Schema.define(version: 20171016120050) do
 
   create_table "granted_accesses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -20,8 +20,11 @@ ActiveRecord::Schema.define(version: 20171013090133) do
     t.string "access_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "refresh_token"
+    t.datetime "access_token_expires_at"
     t.index ["access_token"], name: "index_granted_accesses_on_access_token"
     t.index ["code"], name: "index_granted_accesses_on_code"
+    t.index ["refresh_token"], name: "index_granted_accesses_on_refresh_token"
     t.index ["user_id"], name: "index_granted_accesses_on_user_id"
     t.index ["website_id"], name: "index_granted_accesses_on_website_id"
   end
