@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post 'authorizations/request_token'
       get 'authorizations/access_token'
       get 'users/me'
+      get 'users/profile'
     end
   end
 
