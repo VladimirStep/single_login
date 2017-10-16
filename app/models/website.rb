@@ -1,6 +1,6 @@
 class Website < ApplicationRecord
   belongs_to :user
-  has_one :granted_access, dependent: :destroy
+  has_many :granted_accesses, dependent: :destroy
 
   has_secure_token :secrete_token
 

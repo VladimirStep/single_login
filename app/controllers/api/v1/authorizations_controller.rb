@@ -1,8 +1,9 @@
 class Api::V1::AuthorizationsController < ApplicationController
   skip_before_action :authenticate_user, only: [:request_token, :fail]
+  skip_before_action :verify_authenticity_token
 
   def authorize
-    website = current_user.websites.find_by_secrete_id(params[:client_id])
+    website = Website.find_by_secrete_id(params[:client_id])
     if website
       grant = current_user.granted_accesses.where(website_id: website.id).first_or_initialize
       grant.state = params[:state]
@@ -23,8 +24,9 @@ class Api::V1::AuthorizationsController < ApplicationController
 
   def request_token
     website = Website.try_authenticate(params[:client_id], params[:client_secret])
-    if website&.granted_access&.code == params[:code]
-      render json: { access_token: website.granted_access.access_token }, status: 200
+    current_access = website&.granted_accesses&.find_by_code(params[:code])
+    if current_access
+      render json: { access_token: current_access.access_token }, status: 200
     else
       render json: {}, status: 401
     end
