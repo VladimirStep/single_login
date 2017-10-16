@@ -21,3 +21,16 @@
     </ul>
   </div>
 </nav>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <% flash.each do |key, message| %>
+            <div class="alert alert-<%= key.to_s %>" role="alert">
+              <%= message %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

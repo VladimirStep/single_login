@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     unless authenticated?
       session[:original_request] = request.original_url
+      flash[:warning] = 'You have to login before proceed!'
       redirect_to login_path
     end
   end
