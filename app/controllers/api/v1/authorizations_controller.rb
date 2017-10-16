@@ -1,5 +1,5 @@
 class Api::V1::AuthorizationsController < ApplicationController
-  skip_before_action :authenticate_user, only: [:request_token, :me]
+  skip_before_action :authenticate_user, only: [:request_token]
 
   def authorize
     website = current_user.websites.find_by_secrete_id(params[:client_id])
@@ -28,13 +28,5 @@ class Api::V1::AuthorizationsController < ApplicationController
     else
       render json: {}, status: 401
     end
-  end
-
-  def access_token
-
-  end
-
-  def me
-    render json: { name: 'Vladimir', email: 'my@email.com', id: '123' }, status: 200 # This is a stub
   end
 end
