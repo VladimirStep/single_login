@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'authorizations/authorize'
       post 'authorizations/request_token'
-      get 'authorizations/access_token'
+      get 'authorizations/fail'
       get 'users/me'
       get 'users/profile'
     end

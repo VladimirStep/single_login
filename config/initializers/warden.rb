@@ -28,6 +28,6 @@ Warden::Strategies.add(:by_token) do
 
   def authenticate!
     api_user = GrantedAccess.try_authenticate(params[:oauth_token])
-    api_user.nil? ? '' : success!(api_user)
+    api_user.nil? ? redirect!(Rails.application.routes.url_helpers.api_v1_authorizations_fail_path) : success!(api_user)
   end
 end
