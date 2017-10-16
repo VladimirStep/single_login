@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.granted_accesses.destroy_all
     logout
     redirect_to root_path
   end
