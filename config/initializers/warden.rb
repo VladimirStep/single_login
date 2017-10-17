@@ -1,6 +1,6 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   manager.default_strategies :by_password
-  manager.failure_app = SessionsController.action(:new) # FIXME: Fails with authenticity_token token error
+  manager.failure_app = SessionsController.action(:new)
 
   manager.scope_defaults(
       :api_user,
@@ -39,6 +39,11 @@ Warden::Strategies.add(:by_token) do
 
   def authenticate!
     api_user = GrantedAccess.try_authenticate(params[:oauth_token])
-    api_user.nil? ? redirect!(Rails.application.routes.url_helpers.api_v1_authorizations_fail_path) : success!(api_user)
+    if api_user.nil?
+      custom!(Api::V1::AuthorizationsController.action(:fail).call(request.env))
+      throw(:warden)
+    else
+      success!(api_user)
+    end
   end
 end
