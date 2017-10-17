@@ -26,24 +26,16 @@ class Api::V1::AuthorizationsController < ApplicationController
     website = Website.try_authenticate(params[:client_id], params[:client_secret])
     if params[:grant_type] == 'authorization_code'
       current_access = website&.granted_accesses&.find_by_code(params[:code])
-      if current_access
-        render json: { access_token: current_access.access_token,
-                       refresh_token: current_access.refresh_token,
-                       expires_at: current_access.access_token_expires_at.to_i },
-               status: 200
-      else
-        render json: {}, status: 401
-      end
     elsif params[:grant_type] == 'refresh_token'
       current_access = website&.granted_accesses&.find_by_refresh_token(params[:refresh_token])
-      if current_access.refresh_access_token
-        render json: { access_token: current_access.access_token,
-                       refresh_token: current_access.refresh_token,
-                       expires_at: current_access.access_token_expires_at.to_i },
-               status: 200
-      else
-        render json: {}, status: 401
-      end
+    end
+    if current_access
+      render json: { access_token: current_access.access_token,
+                     refresh_token: current_access.refresh_token,
+                     expires_at: current_access.access_token_expires_at.to_i },
+             status: 200
+    else
+      render json: {}, status: 401
     end
   end
 
