@@ -9,6 +9,17 @@ Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   )
 end
 
+class Warden::SessionSerializer
+  def serialize(record)
+    [record.class.name, record.token]
+  end
+
+  def deserialize(keys)
+    klass, token = keys
+    klass.constantize.find_by_token(token)
+  end
+end
+
 # Declare your strategies here, or require a file that defines one.
 Warden::Strategies.add(:by_password) do
   def valid?
